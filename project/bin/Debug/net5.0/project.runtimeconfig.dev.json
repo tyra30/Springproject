@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Tyra.ekstrand\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Tyra.ekstrand\\.nuget\\packages"
+    ]
+  }
+}
