@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Raylib_cs;
 
 namespace project
@@ -25,11 +26,22 @@ namespace project
             Rectangle answer2 = new Rectangle(360, 360, 50, 50);
 
 
+            //KOMPONENTERNA I LISTEN
+            List<Rectangle> rectangles = new List<Rectangle>();
+            rectangles.Add(new Rectangle(10, 10, 20, 20));
+            rectangles.Add(new Rectangle(20, 20, 20, 20));
+            rectangles.Add(new Rectangle(30, 30, 20, 20));
+            rectangles.Add(new Rectangle(40, 40, 20, 20));
+
+
+
+            //VAD SOM HÄNDER NÄR VI ÄR INNE I SPELET
             while (!Raylib.WindowShouldClose())
             {
                 if (gamestate == "level1")
                 {
                     //LOGIK
+                    //OM MAN KLICKAR PÅ startbutton SÅ BYTER VI TILL level2
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), startButton) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
                     {
                         gamestate = "level2";
@@ -37,6 +49,7 @@ namespace project
                     //DRAW
                     Raylib.BeginDrawing();
                     Raylib.ClearBackground(Color.WHITE);
+
 
                     Raylib.DrawRectangleRec(startButton, Color.WHITE);
                     Raylib.DrawText("5000 IQ TEST", 250, 150, 200, Color.BLACK);
@@ -98,6 +111,15 @@ namespace project
                     Raylib.BeginDrawing();
                     Raylib.ClearBackground(Color.WHITE);
 
+
+                    //VI GÅR FRÅN 0 OCH GÅR UPP ETT STEG VARJE GÅNG TILLS REKTANGLARNA I LISTAN TAR SLUT
+
+                    for (int i = 0; i < rectangles.Count; i++)
+                    {
+                        Raylib.DrawRectangleRec(rectangles[i], Color.BLACK);
+
+                    }
+
                     Raylib.EndDrawing();
 
 
@@ -107,6 +129,7 @@ namespace project
         }
 
 
+        //METOD FÖR ATT RITA UT KEYPAD
         private static void DrawKeypad()
         {
             Raylib.DrawRectangle(300, 300, 50, 50, Color.GRAY);
