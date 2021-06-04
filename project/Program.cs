@@ -22,6 +22,8 @@ namespace project
 
             bool appleIsReal = false;
 
+            Rectangle answer2 = new Rectangle(360, 360, 50, 50);
+
 
             while (!Raylib.WindowShouldClose())
             {
@@ -57,10 +59,11 @@ namespace project
                         appleIsReal = true;
                     }
 
-                    if (appleIsReal && apple.y < 600)
+                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), answer2) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
                     {
-                        apple.y += 3;
+                        gamestate = "level3";
                     }
+
 
                     //DRAW
                     Raylib.BeginDrawing();
@@ -72,19 +75,60 @@ namespace project
                     Raylib.DrawRectangle(1400, 420, 50, 50, Color.RED);
                     Raylib.DrawRectangle(1350, 580, 50, 50, Color.RED);
 
+                    DrawKeypad();
+                    Raylib.DrawText("How many apples are in the tree?", 120, 250, 30, Color.BLACK);
 
-
-
-
+                    //APPLE FALLING
                     if (appleIsReal)
                     {
                         Raylib.DrawRectangleRec(apple, Color.RED);
                     }
 
+                    if (appleIsReal && apple.y < 600)
+                    {
+                        apple.y += 3;
+                    }
+                    Raylib.EndDrawing();
+
+
+
+                }
+                else if (gamestate == "level3")
+                {
+                    Raylib.BeginDrawing();
+                    Raylib.ClearBackground(Color.WHITE);
 
                     Raylib.EndDrawing();
+
+
                 }
+
             }
+        }
+
+
+        private static void DrawKeypad()
+        {
+            Raylib.DrawRectangle(300, 300, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(360, 300, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(420, 300, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(300, 360, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(360, 360, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(420, 360, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(300, 420, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(360, 420, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(420, 420, 50, 50, Color.GRAY);
+            Raylib.DrawRectangle(360, 480, 50, 50, Color.GRAY);
+            Raylib.DrawText("1", 315, 300, 50, Color.BLACK);
+            Raylib.DrawText("2", 375, 300, 50, Color.BLACK);
+            Raylib.DrawText("3", 435, 300, 50, Color.BLACK);
+            Raylib.DrawText("4", 315, 360, 50, Color.BLACK);
+            Raylib.DrawText("5", 375, 360, 50, Color.BLACK);
+            Raylib.DrawText("6", 435, 360, 50, Color.BLACK);
+            Raylib.DrawText("7", 315, 420, 50, Color.BLACK);
+            Raylib.DrawText("8", 375, 420, 50, Color.BLACK);
+            Raylib.DrawText("9", 435, 420, 50, Color.BLACK);
+            Raylib.DrawText("10", 365, 480, 50, Color.BLACK);
         }
     }
 }
